@@ -49,35 +49,6 @@ public class ComputerSystemTest {
 		assertEquals(0, computerSystem.getNumberOfPeripherals());
 	}
 	
-	@Test
-	public void removePeripheralRemovesObjectFromArray() throws TooManyPeripheralsException {
-		ComputerSystem computerSystem = new ComputerSystem();
-		Mouse mouse = new MouseBuilder().build();
-		computerSystem.addPeripheral(mouse);
-		assertNotNull(computerSystem.getPeripherals()[0]);
-		computerSystem.removePeripheral(mouse.getArticleNumber());
-		assertNull(computerSystem.getPeripherals()[0]);
-	}
-	
-	@Test
-	public void removePeripheralDecreasesNumberOfPeripherals() throws TooManyPeripheralsException {
-		ComputerSystem computerSystem = new ComputerSystem();
-		Mouse mouse = new MouseBuilder().build();
-		computerSystem.addPeripheral(mouse);
-		int countBefore = computerSystem.getNumberOfPeripherals();
-		computerSystem.removePeripheral(mouse.getArticleNumber());
-		assertEquals(countBefore - 1, computerSystem.getNumberOfPeripherals());
-	}
-	
-	@Test
-	public void removePeripheralNumberOfPeripheralsNotChangedIfPeripheralNotAvailable() throws TooManyPeripheralsException {
-		ComputerSystem computerSystem = new ComputerSystem();
-		Mouse mouse = new MouseBuilder().build();
-		int countBefore = computerSystem.getNumberOfPeripherals();
-		computerSystem.removePeripheral(mouse.getArticleNumber());
-		assertEquals(countBefore, computerSystem.getNumberOfPeripherals());
-	}
-	
 	@Test(expected=TooManyPeripheralsException.class)
 	public void tooManyPeripheralsExceptionIsThrownWhenAllowedNumberOfPeripheralsExceeded() throws TooManyPeripheralsException {
 		ComputerSystem computerSystem = new ComputerSystem();
